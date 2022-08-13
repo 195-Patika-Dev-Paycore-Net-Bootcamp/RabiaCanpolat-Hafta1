@@ -14,13 +14,13 @@ namespace PaycoreFirstTry.Controllers
         [HttpGet]
         public ActionResult CalculateCompoundInterest(double total, double interestrate, double time)
         {
-            if(total < 0 || interestrate < 0 || time < 0)
+            if(total < 0 || interestrate < 0 || time < 0) // return BadRequest if values ​​are negative
             {
                 return BadRequest();
             }
-            InterestResponse interestResponse = new InterestResponse();
-            interestResponse.TotalBalance = total * Math.Pow((1 + (interestrate / 100)), time);
-            interestResponse.InterestAmount = interestResponse.TotalBalance - total;
+            InterestResponse interestResponse = new InterestResponse(); // created object
+            interestResponse.TotalBalance = total * Math.Pow((1 + (interestrate / 100)), time); // calculate compound interest calculation
+            interestResponse.InterestAmount = interestResponse.TotalBalance - total; // calculate interest amount
             return Ok(interestResponse);
         }
     }
